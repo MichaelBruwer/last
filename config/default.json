@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://brad123:brad123@react-rateing-app.sy7tc.mongodb.net/<dbname>?retryWrites=true&w=majority"
+}
