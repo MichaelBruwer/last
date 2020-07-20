@@ -3,9 +3,9 @@ import React from 'react';
 function Footer() {
   return (
     <footer
-      className='page-footer light-blue darken-3'
+      className='page-footer purple lighten-2'
       style={{
-        position: 'flex',
+        position: 'fixed',
         bottom: '0',
         left: '0',
         width: '100%',
