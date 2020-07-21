@@ -18,7 +18,7 @@ router.post(
     check(
       'password',
       'Please insert a password with 6 or more characters'
-    ).isLength({ min: 6 }),
+    ).isLength({ min: 8 }),
     check('type', 'Company or Personal').not().isEmpty(),
   ],
   async (req, res) => {

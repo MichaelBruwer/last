@@ -1,6 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+
+  const { setAlert } = alertContext;
+
+  const { register, error, clearErrors } = authContext;
+
+  useEffect(() => {
+    if (error === 'User already exists') {
+      setAlert(error, 'Danger');
+      clearErrors();
+    }
+  }, [error]);
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -15,7 +31,20 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('Register submit');
+    if (name === '' || email === '' || password === '' || type === '') {
+      setAlert('Please Fill in the Required Fields', 'Danger');
+    } else if (password !== password2) {
+      setAlert('Password is Incorrect', 'Danger');
+      // } else if (type !== 'Personal' || type !== 'Company') {
+      //   setAlert('Please choose Personal or Company', 'Danger');
+    } else {
+      register({
+        name,
+        email,
+        password,
+        type,
+      });
+    }
   };
 
   return (
@@ -37,15 +66,17 @@ const Register = () => {
             name='password'
             value={password}
             onChange={onChange}
+            minLength='8'
           />
         </div>
         <div className='form-group'>
           <label htmlFor='password2'>Confirm Password</label>
           <input
-            type='password2'
+            type='password'
             name='password2'
             value={password2}
             onChange={onChange}
+            minLength='8'
           />
         </div>
         <div className='form-group'>
