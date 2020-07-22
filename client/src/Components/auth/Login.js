@@ -1,6 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
 
-const Login = () => {
+const Login = (props) => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+
+  const { setAlert } = alertContext;
+
+  const { login, error, clearErrors, isAuthenticated } = authContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+
+    if (error === 'Wrong Details') {
+      setAlert(error, 'Danger');
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
+
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -12,7 +33,14 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('Login submit');
+    if (email === '' || password === '') {
+      setAlert('Fields cannot be Null or Empty');
+    } else {
+      login({
+        email,
+        password,
+      });
+    }
   };
 
   return (

@@ -10,7 +10,12 @@ import Alerts from './Components/Layout/Alerts';
 
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
+import setToken from './Components/setToken';
 import './App.css';
+
+if (localStorage.token) {
+  setToken(localStorage.token);
+}
 
 const App = () => {
   useEffect(() => {

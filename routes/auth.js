@@ -7,16 +7,14 @@ const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
-const Company = require('../models/Companys');
+// const Company = require('../models/Companys');
 
 //@route        Get api/auth
 //@desc         Get logged in user
 //@access       Private
 router.get('/', auth, async (req, res) => {
   try {
-    const user = await (await User.findById(req.user.id)).isSelected(
-      '-password'
-    );
+    const user = await User.findById(req.user.id).Select('-password');
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -39,18 +37,18 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password, type } = req.body;
+    const { email, password } = req.body;
 
     try {
       let user = await User.findOne({ email });
 
       if (!user) {
-        return res.status(400).json({ msg: 'Invalid Credentials' });
+        return res.status(400).json({ msg: 'Wrong Details' });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(400).json({ msg: 'Invalid Credentials' });
+        return res.status(400).json({ msg: 'Wrong Details' });
       }
       const payload = {
         user: {
@@ -60,7 +58,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get(jwtSecret),
+        config.get('jwtSecret'),
         {
           expiresIn: 3600000,
         },

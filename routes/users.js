@@ -17,7 +17,7 @@ router.post(
     check('email', 'Please insert a valid email').isEmail,
     check(
       'password',
-      'Please insert a password with 6 or more characters'
+      'Please insert a password with 8 or more characters'
     ).isLength({ min: 8 }),
     check('type', 'Company or Personal').not().isEmpty(),
   ],
@@ -57,7 +57,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get(jwtSecret),
+        config.get('jwtSecret'),
         {
           expiresIn: 3600000,
         },

@@ -2,20 +2,25 @@ import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
-const Register = () => {
+const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
 
   const { setAlert } = alertContext;
 
-  const { register, error, clearErrors } = authContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
-    if (error === 'User already exists') {
-      setAlert(error, 'Danger');
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+
+    if (error === 'User exists') {
+      setAlert(error);
       clearErrors();
     }
-  }, [error]);
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
     name: '',
@@ -32,9 +37,9 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (name === '' || email === '' || password === '' || type === '') {
-      setAlert('Please Fill in the Required Fields', 'Danger');
+      setAlert('Please Fill in the Required Fields');
     } else if (password !== password2) {
-      setAlert('Password is Incorrect', 'Danger');
+      setAlert('Password is Incorrect');
       // } else if (type !== 'Personal' || type !== 'Company') {
       //   setAlert('Please choose Personal or Company', 'Danger');
     } else {
