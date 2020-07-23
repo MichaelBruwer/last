@@ -8,6 +8,8 @@ import Register from './Components/auth/Register';
 import Login from './Components/auth/Login';
 import Alerts from './Components/Layout/Alerts';
 
+import Home from './Components/pages/Home';
+
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import setToken from './Components/setToken';
@@ -29,9 +31,11 @@ const App = () => {
         <Router>
           <Fragment>
             <Searchbar />
+
             <div className='container'>
               <Alerts />
               <Switch>
+                <Route exact path='/' component={Home} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
               </Switch>

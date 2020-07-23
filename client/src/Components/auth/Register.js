@@ -27,27 +27,23 @@ const Register = (props) => {
     email: '',
     password: '',
     password2: '',
-    type: '',
   });
 
-  const { name, email, password, password2, type } = user;
+  const { name, email, password, password2 } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (name === '' || email === '' || password === '' || type === '') {
+    if (name === '' || email === '' || password === '') {
       setAlert('Please Fill in the Required Fields');
     } else if (password !== password2) {
       setAlert('Password is Incorrect');
-      // } else if (type !== 'Personal' || type !== 'Company') {
-      //   setAlert('Please choose Personal or Company', 'Danger');
     } else {
       register({
         name,
         email,
         password,
-        type,
       });
     }
   };
@@ -84,10 +80,7 @@ const Register = (props) => {
             minLength='8'
           />
         </div>
-        <div className='form-group'>
-          <label htmlFor='type'>Type</label>
-          <input type='text' name='type' value={type} onChange={onChange} />
-        </div>
+
         <input type='submit' value='Register' className='btn btn-block' />
       </form>
     </div>

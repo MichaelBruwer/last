@@ -1,17 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import AuthContext from '../../context/authContext';
+import React, { Fragment } from 'react';
 
 const Home = () => {
-  const authContext = useContext(AuthContext);
-
-  useEffect(() => {
-    authContext.loadUser();
-  }, []);
-
   return (
-    <div>
-      <h1>this is the homepage</h1>
-    </div>
+    <Fragment>
+      <h1>hi</h1>
+    </Fragment>
   );
 };
 

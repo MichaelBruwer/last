@@ -19,7 +19,6 @@ router.post(
       'password',
       'Please insert a password with 8 or more characters'
     ).isLength({ min: 8 }),
-    check('type', 'Company or Personal').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -27,20 +26,19 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password, type } = req.body;
+    const { name, email, password } = req.body;
 
     try {
       let user = await User.findOne({ email });
 
       if (user) {
-        return res.status(400).json({ msg: 'User already exists' });
+        return res.status(400).json({ msg: 'User exists' });
       }
 
       user = new User({
         name,
         email,
         password,
-        type,
       });
 
       const salt = await bcrypt.genSalt(10);

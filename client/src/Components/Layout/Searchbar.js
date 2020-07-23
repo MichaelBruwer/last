@@ -25,7 +25,7 @@ const Searchbar = () => {
   const UnlogedLinks = (
     <Fragment>
       <li>
-        <Link to='sass.html'>Home</Link>
+        <Link to='/Home'>Home</Link>
       </li>
       <li>
         <Link to='/register'>Register</Link>
