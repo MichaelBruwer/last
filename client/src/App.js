@@ -18,6 +18,7 @@ import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 //api
 import ApiState from './context/Api/ApiState';
+import User from './Components/users/User';
 //css
 import './App.css';
 
@@ -41,6 +42,7 @@ const App = () => {
                   <Route exact path='/' component={Home} />
                   <Route exact path='/register' component={Register} />
                   <Route exact path='/login' component={Login} />
+                  <Route exact path='/user/:login' component={User} />
                 </Switch>
               </div>
               {/* <Footer /> */}
