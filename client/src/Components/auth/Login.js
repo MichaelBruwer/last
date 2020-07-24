@@ -16,7 +16,7 @@ const Login = (props) => {
     }
 
     if (error === 'Wrong Details') {
-      setAlert(error, 'Danger');
+      setAlert(error);
       clearErrors();
     }
     // eslint-disable-next-line

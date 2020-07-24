@@ -1,12 +1,31 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import ApiContext from '../../context/Api/apiContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const Searchbar = () => {
   const authContext = useContext(AuthContext);
-
   const { isAuthenticated, logout, user } = authContext;
 
+  //Search
+  const apicontext = useContext(ApiContext);
+  const alertContext = useContext(AlertContext);
+  const [text, setText] = useState('');
+
+  //OnSubmit
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (text === '') {
+      alertContext.setAlert(' Enter something');
+    } else {
+      apicontext.searchUsers(text);
+      setText('');
+    }
+  };
+  const onChange = (e) => setText(e.target.value);
+
+  //Logout
   const onLogout = () => {
     logout();
   };
@@ -25,7 +44,7 @@ const Searchbar = () => {
   const UnlogedLinks = (
     <Fragment>
       <li>
-        <Link to='/Home'>Home</Link>
+        <Link to='/'>Home</Link>
       </li>
       <li>
         <Link to='/register'>Register</Link>
@@ -41,14 +60,19 @@ const Searchbar = () => {
       <div className='nav-wrapper'>
         <ul id='nav-mobile' className='left hide-on-med-and-down'>
           <li>
-            <form className='left-align'>
-              <div className='input-field'>
-                <input id='search' type='search' required />
-                <label className='label-icon' htmlFor='search'>
-                  <i className='material-icons'>search</i>
-                </label>
-                <i className='material-icons'>close</i>
-              </div>
+            <form onSubmit={onSubmit} className='left-align'>
+              <input
+                type='text'
+                name='text'
+                placeholder='Search Users...'
+                value={text}
+                onChange={onChange}
+              />
+              <input
+                type='submit'
+                value='Search'
+                className='btn btn-dark btn-block'
+              />
             </form>
           </li>
         </ul>

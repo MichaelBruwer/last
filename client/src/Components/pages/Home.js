@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
+import Users from '../users/Users';
 
 const Home = () => {
   return (
     <Fragment>
-      <h1>hi</h1>
+      <Users />
     </Fragment>
   );
 };
