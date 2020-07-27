@@ -20,7 +20,10 @@ const User = ({ match }) => {
 
   return (
     <Fragment>
-      <div className='card blue lighten-4'>
+      <div
+        className='card  pfbg blue lighten-4  center'
+        style={{ color: 'white' }}
+      >
         <div className='all-center '>
           <img
             src={avatar_url}

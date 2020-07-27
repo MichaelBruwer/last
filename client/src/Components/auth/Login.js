@@ -48,7 +48,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className='form-container'>
+    <div className='form-container ' style={{ color: 'white' }}>
       <h1>Account Login</h1>
       {/* //form */}
       <form onSubmit={onSubmit}>

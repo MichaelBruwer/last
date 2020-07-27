@@ -4,6 +4,9 @@ body {
   line-height: 1.5;
   background-color: #e0e0e0;
   color: #333;
+  background-image: url('/Images/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
@@ -16,4 +19,38 @@ body {
 .navbar {
   display: block;
   text-align: center;
+}
+
+.cbg {
+  background-image: url('/Images/flower.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.comsec {
+  background-image: url('/Images/comsec.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.pfbg {
+  background-image: url('/Images/pfbg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.Lgbg {
+  background-image: url('/Images/login.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.Rgbg {
+  background-image: url('/Images/pfbg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
 }

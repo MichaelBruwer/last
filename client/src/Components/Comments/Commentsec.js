@@ -34,10 +34,8 @@ class commentsec extends Component {
       });
   }
 
-  /**
-   * Add new comment
-   * @param {Object} comment
-   */
+  // Add new comment
+
   addComment(comment) {
     this.setState({
       loading: false,
@@ -49,12 +47,14 @@ class commentsec extends Component {
     return (
       <div>
         {/* //comments */}
-        <div className='row green lighten-1'>
-          <div className='col-4  pt-3 border-right'>
-            <h6>Say something about This Person/Company</h6>
+        <div className='row green lighten-1 comsec'>
+          <div className='col-4  '>
+            <h6 className='center' style={{ color: 'white' }}>
+              Say something about This Person/Company
+            </h6>
             <CommentForm addComment={this.addComment} />
           </div>
-          <div className='col-8  pt-3 bg-white'>
+          <div className='col-8'>
             <CommentList
               loading={this.state.loading}
               comments={this.state.comments}

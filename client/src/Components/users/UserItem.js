@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const UserItem = ({ user: { login, avatar_url } }) => {
   return (
-    <div className='card circle pink lighten-4'>
+    <div className=' pink center lighten-4 cbg' style={{ borderRadius: 100 }}>
       <img
         src={avatar_url}
         alt=''
@@ -14,7 +14,7 @@ const UserItem = ({ user: { login, avatar_url } }) => {
       {/* Dsplaying name */}
       <h5>{login}</h5>
       {/* Link to user profile */}
-      <div>
+      <div className='center'>
         <Link to={`/user/${login}`} className='waves-effect waves-light btn '>
           Full Profile
         </Link>
