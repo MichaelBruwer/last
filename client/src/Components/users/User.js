@@ -4,6 +4,8 @@ import Spinner from '../Layout/Spinner';
 import { Link } from 'react-router-dom';
 import ApiContext from '../../context/Api/apiContext';
 
+import Commentsec from '../Comments/Commentsec';
+
 const User = ({ match }) => {
   const apiContext = useContext(ApiContext);
 
@@ -15,40 +17,24 @@ const User = ({ match }) => {
     // eslint-disable-next-line
   }, []);
 
-  const {
-    name,
-    company,
-    avatar_url,
-    location,
-    bio,
-    blog,
-    login,
-    html_url,
-    hireable,
-  } = user;
+  const { name, company, avatar_url, location, bio, blog } = user;
 
   if (loading) return <Spinner />;
 
   return (
     <Fragment>
-      <Link to='/' className='btn btn-light'>
+      <Link to='/' className='waves-effect waves-light btn-small'>
         Back to Search
       </Link>
-      Hireable: {''}
-      {hireable ? (
-        <i className='fas fa-check text-success' />
-      ) : (
-        <i className='fas fa-times-circle text-danger' />
-      )}
-      <div className='card grid-2'>
+      <div className='card grid-2 blue lighten-4'>
         <div className='all-center'>
           <img
             src={avatar_url}
-            className='round-img'
-            alt=''
+            className='circle'
+            alt='Profilepic'
             style={{ width: '150px' }}
           />
-          <h1>{name}</h1>
+          <h3>{name}</h3>
           <p>Location:{location}</p>
         </div>
         <div>
@@ -58,19 +44,7 @@ const User = ({ match }) => {
               <p>{bio}</p>
             </Fragment>
           )}
-          <a href={html_url} className='btn btn-dark my-1'>
-            Go to Github profile
-          </a>
-          <ul>
-            <li>
-              {login && (
-                <Fragment>
-                  <strong>Username:</strong>
-                  {login}
-                </Fragment>
-              )}
-            </li>
-          </ul>
+
           <ul>
             <li>
               {company && (
@@ -93,6 +67,7 @@ const User = ({ match }) => {
           </ul>
         </div>
       </div>
+      <Commentsec />
     </Fragment>
   );
 };

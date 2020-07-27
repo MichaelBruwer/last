@@ -38,6 +38,9 @@ const Searchbar = () => {
           Sign Out <span className='hide-on-med-and-down'></span>
         </a>
       </li>
+      <li>
+        <Link to='/'>Home</Link>
+      </li>
     </Fragment>
   );
 
@@ -71,7 +74,7 @@ const Searchbar = () => {
               <input
                 type='submit'
                 value='Search'
-                className='btn btn-dark btn-block'
+                className='btn btn-dark btn-block hide'
               />
             </form>
           </li>
