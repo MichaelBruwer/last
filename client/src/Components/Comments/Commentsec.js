@@ -35,7 +35,6 @@ class commentsec extends Component {
   }
 
   // Add new comment
-
   addComment(comment) {
     this.setState({
       loading: false,

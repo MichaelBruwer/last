@@ -4,6 +4,7 @@ import Users from '../users/Users';
 const Home = () => {
   return (
     <Fragment>
+      {/* Displaying user cards */}
       <Users />
     </Fragment>
   );

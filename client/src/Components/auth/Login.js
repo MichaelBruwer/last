@@ -48,17 +48,17 @@ const Login = (props) => {
   };
 
   return (
-    <div className='form-container ' style={{ color: 'white' }}>
+    <div style={{ color: 'white' }}>
       <h1>Account Login</h1>
       {/* //form */}
       <form onSubmit={onSubmit}>
         {/* //input email */}
-        <div className='form-group'>
+        <div>
           <label htmlFor='email'>Email</label>
           <input type='email' name='email' value={email} onChange={onChange} />
         </div>
         {/* input password */}
-        <div className='form-group'>
+        <div>
           <label htmlFor='password'>Password</label>
           <input
             type='password'
@@ -68,7 +68,11 @@ const Login = (props) => {
           />
         </div>
         {/* //submit */}
-        <input type='submit' value='Login' className='btn btn-block' />
+        <input
+          type='submit'
+          value='Login'
+          className='btn waves-effect waves-light'
+        />
       </form>
     </div>
   );

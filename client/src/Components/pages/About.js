@@ -9,8 +9,8 @@ const About = () => {
       <p>
         known bugs
         <br />
-        -comments disabled -Being Logged in prevents searching || seeing
-        profiles
+        -about not implemented -comments disabled --commments no backend -Being
+        Logged in prevents searching || seeing profiles
       </p>
     </div>
   );

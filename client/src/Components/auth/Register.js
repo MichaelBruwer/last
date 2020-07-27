@@ -5,9 +5,7 @@ import AuthContext from '../../context/auth/authContext';
 const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
-
   const { setAlert } = alertContext;
-
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
@@ -31,7 +29,6 @@ const Register = (props) => {
   });
 
   const { name, email, password, password2 } = user;
-
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
@@ -52,22 +49,22 @@ const Register = (props) => {
   };
 
   return (
-    <div className='form-container' style={{ color: 'white' }}>
+    <div style={{ color: 'white' }}>
       <h1>Account Register</h1>
       {/* //form */}
       <form onSubmit={onSubmit}>
         {/* //name */}
-        <div className='form-group'>
+        <div>
           <label htmlFor='name'>Name</label>
           <input type='text' name='name' value={name} onChange={onChange} />
         </div>
         {/* //email */}
-        <div className='form-group'>
+        <div>
           <label htmlFor='email'>Email</label>
           <input type='email' name='email' value={email} onChange={onChange} />
         </div>
         {/* //password */}
-        <div className='form-group'>
+        <div>
           <label htmlFor='password'>Password</label>
           <input
             type='password'
@@ -78,7 +75,7 @@ const Register = (props) => {
           />
         </div>
         {/* //password confirmation */}
-        <div className='form-group'>
+        <div>
           <label htmlFor='password2'>Confirm Password</label>
           <input
             type='password'
@@ -89,7 +86,11 @@ const Register = (props) => {
           />
         </div>
         {/* //submit register */}
-        <input type='submit' value='Register' className='btn btn-block' />
+        <input
+          type='submit'
+          value='Register'
+          className='btn waves-effect waves-light'
+        />
       </form>
     </div>
   );

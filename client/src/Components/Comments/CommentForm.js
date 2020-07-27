@@ -99,7 +99,6 @@ export default class CommentForm extends Component {
             <input
               onChange={this.handleFieldChange}
               value={this.state.comment.name}
-              className='form-control'
               placeholder=' Insert Name'
               name='name'
               type='text'
@@ -110,16 +109,15 @@ export default class CommentForm extends Component {
             <textarea
               onChange={this.handleFieldChange}
               value={this.state.comment.message}
-              className='form-control'
               placeholder=' Insert Comment'
               name='message'
-              rows='5'
+              type='text'
             />
           </div>
 
           {this.renderError()}
           {/* //submit */}
-          <div className='form-group'>
+          <div>
             <button
               disabled={this.state.loading}
               className='waves-effect waves-light btn'

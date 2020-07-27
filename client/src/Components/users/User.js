@@ -24,7 +24,7 @@ const User = ({ match }) => {
         className='card  pfbg blue lighten-4  center'
         style={{ color: 'white' }}
       >
-        <div className='all-center '>
+        <div>
           <img
             src={avatar_url}
             className='circle'
@@ -67,9 +67,9 @@ const User = ({ match }) => {
       </div>
       <Commentsec />
       {/* rateing */}
-      <div id='star'>
+      {/* <div id='star'>
         <star />
-      </div>
+      </div> */}
       <Link to='/' className='waves-effect waves-light btn-small'>
         Back to Search
       </Link>

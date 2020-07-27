@@ -42,8 +42,8 @@ const Searchbar = () => {
       <li>Welcome {user && user.name}</li>
       <li>
         {/* //logsout */}
-        <a onClick={onLogout} href='#!'>
-          Sign Out <span className='hide-on-med-and-down'></span>
+        <a onClick={onLogout} href='/'>
+          Sign Out
         </a>
       </li>
     </Fragment>
@@ -66,7 +66,7 @@ const Searchbar = () => {
 
   return (
     <nav className='purple lighten-2'>
-      <div className='nav-wrapper'>
+      <div>
         {/* //nav and mobile search trigger  */}
         <a href='#!' data-target='mobile-demo' className='sidenav-trigger'>
           <i>menu</i>
@@ -86,7 +86,7 @@ const Searchbar = () => {
               <input
                 type='submit'
                 value='Search'
-                className='btn btn-dark btn-block hide'
+                className='btn waves-effect waves-light hide'
               />
             </form>
           </li>
@@ -110,7 +110,7 @@ const Searchbar = () => {
             <input
               type='submit'
               value='Search'
-              className='btn btn-dark btn-block hide'
+              className='btn waves-effect waves-light hide'
             />
           </form>
         </li>

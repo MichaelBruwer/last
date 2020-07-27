@@ -10,19 +10,18 @@ const Users = () => {
 
   return (
     // getting users from api in a grid style
-    <div style={userStyle}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gridGap: '1rem',
+      }}
+    >
       {users.map((user) => (
         <UserItem key={user.id} user={user} />
       ))}
     </div>
   );
-};
-
-// Styleing for maped users
-const userStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gridGap: '1rem',
 };
 
 export default Users;

@@ -17,3 +17,5 @@ function star() {
   return <ReactStars {...thirdExample} />;
 }
 export default star;
+
+//not implemented
