@@ -11,6 +11,7 @@ const Login = (props) => {
   const { login, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
+    //validation
     if (isAuthenticated) {
       props.history.push('/');
     }
@@ -32,10 +33,13 @@ const Login = (props) => {
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
+    //preventing default state
     e.preventDefault();
+    //validation
     if (email === '' || password === '') {
       setAlert('Fields cannot be Null or Empty');
     } else {
+      //login with password and email if valid
       login({
         email,
         password,
@@ -46,12 +50,14 @@ const Login = (props) => {
   return (
     <div className='form-container'>
       <h1>Account Login</h1>
+      {/* //form */}
       <form onSubmit={onSubmit}>
+        {/* //input email */}
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input type='email' name='email' value={email} onChange={onChange} />
         </div>
-
+        {/* input password */}
         <div className='form-group'>
           <label htmlFor='password'>Password</label>
           <input
@@ -61,6 +67,7 @@ const Login = (props) => {
             onChange={onChange}
           />
         </div>
+        {/* //submit */}
         <input type='submit' value='Login' className='btn btn-block' />
       </form>
     </div>

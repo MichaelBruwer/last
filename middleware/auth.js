@@ -11,11 +11,13 @@ module.exports = function (req, res, next) {
   }
 
   try {
+    //success
     const decoded = jwt.verify(token, config.get('jwtSecret'));
 
     req.user = decoded.user;
-    nect();
+    next();
   } catch (err) {
+    //fail
     res.status(401).json({ msg: 'Token is invalid' });
   }
 };

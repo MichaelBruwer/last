@@ -13,9 +13,11 @@ const User = require('../models/User');
 //@access       Private
 router.get('/', auth, async (req, res) => {
   try {
+    //pass
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
+    //fail
     console.error(err.message);
     res.status(500).send('Server Error');
   }
@@ -26,12 +28,14 @@ router.get('/', auth, async (req, res) => {
 //@access       Public
 router.post(
   '/',
+  //validation
   [
     check('email', 'Please include valid email').isEmail(),
     check('password', 'Password required').exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
+    //if no errors
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -40,12 +44,13 @@ router.post(
 
     try {
       let user = await User.findOne({ email });
-
+      // not the users email
       if (!user) {
         return res.status(400).json({ msg: 'Wrong Details' });
       }
-
+      //users email
       const isMatch = await bcrypt.compare(password, user.password);
+      //not users password
       if (!isMatch) {
         return res.status(400).json({ msg: 'Wrong Details' });
       }
@@ -59,7 +64,7 @@ router.post(
         payload,
         config.get('jwtSecret'),
         {
-          expiresIn: 3600000,
+          expiresIn: 36000,
         },
         (err, token) => {
           if (err) throw err;
@@ -67,6 +72,7 @@ router.post(
         }
       );
     } catch (err) {
+      //error
       console.error(err.message);
       res.status(500).send('Server Error');
     }

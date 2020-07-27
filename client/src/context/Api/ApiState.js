@@ -59,8 +59,8 @@ const ApiState = (props) => {
     });
   };
 
-  //get repos
-  const getUserRepos = async (username) => {
+  //get profile
+  const getUserProfile = async (username) => {
     setLoading();
 
     const res = await axios.get(
@@ -84,12 +84,11 @@ const ApiState = (props) => {
       value={{
         users: state.users,
         user: state.user,
-        repos: state.repos,
         loading: state.loading,
         searchUsers,
         clearUsers,
         getUser,
-        getUserRepos,
+        getUserProfile,
       }}
     >
       {props.children}

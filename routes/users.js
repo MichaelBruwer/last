@@ -13,6 +13,7 @@ const User = require('../models/User');
 router.post(
   '/',
   [
+    //validation
     check('name', 'Please insert a name').not().isEmpty(),
     check('email', 'Please insert a valid email').isEmail(),
     check(
@@ -22,6 +23,7 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
+    //validation fail
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -30,7 +32,7 @@ router.post(
 
     try {
       let user = await User.findOne({ email });
-
+      //when trying to reg user that exists
       if (user) {
         return res.status(400).json({ msg: 'User exists' });
       }
@@ -42,7 +44,7 @@ router.post(
       });
 
       const salt = await bcrypt.genSalt(10);
-
+      //combineing user password with salt
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
@@ -57,7 +59,7 @@ router.post(
         payload,
         config.get('jwtSecret'),
         {
-          expiresIn: 3600000,
+          expiresIn: 36000,
         },
         (err, token) => {
           if (err) throw err;
@@ -65,6 +67,7 @@ router.post(
         }
       );
     } catch (err) {
+      //error
       console.error(err.message);
       res.status(500).send('Server Error');
     }

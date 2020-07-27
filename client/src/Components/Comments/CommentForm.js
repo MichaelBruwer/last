@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 export default class CommentForm extends Component {
+  //constructor to set default state
   constructor(props) {
     super(props);
     this.state = {
@@ -18,9 +19,8 @@ export default class CommentForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  /**
-   * Handle form input field changes & update the state
-   */
+  //Handle form input field changes & update the state
+
   handleFieldChange = (event) => {
     const { value, name } = event.target;
 
@@ -33,9 +33,8 @@ export default class CommentForm extends Component {
     });
   };
 
-  /**
-   * Form submit handler
-   */
+  //Form submit
+
   onSubmit(e) {
     // prevent default form submission
     e.preventDefault();
@@ -59,35 +58,35 @@ export default class CommentForm extends Component {
         if (res.error) {
           this.setState({ loading: false, error: res.error });
         } else {
-          // add time return from api and push comment to parent state
+          // add time and push comment to state
           comment.time = res.time;
           this.props.addComment(comment);
 
-          // clear the message box
+          // clear message box
           this.setState({
             loading: false,
             comment: { ...comment, message: '' },
           });
         }
       })
+      //if error
       .catch((err) => {
         this.setState({
-          error: 'Something went wrong while submitting form.',
+          error: 'Something went wrong.',
           loading: false,
         });
       });
   }
 
-  /**
-   * Simple validation
-   */
+  // validation
+
   isFormValid() {
     return this.state.comment.name !== '' && this.state.comment.message !== '';
   }
 
   renderError() {
     return this.state.error ? (
-      <div className='alert alert-danger'>{this.state.error}</div>
+      <div className='alert'>{this.state.error}</div>
     ) : null;
   }
 
@@ -96,6 +95,7 @@ export default class CommentForm extends Component {
       <Fragment>
         <form method='post' onSubmit={this.onSubmit}>
           <div className='form-group'>
+            {/* //name */}
             <input
               onChange={this.handleFieldChange}
               value={this.state.comment.name}
@@ -105,8 +105,8 @@ export default class CommentForm extends Component {
               type='text'
             />
           </div>
-
           <div className='form-group'>
+            {/* //comment */}
             <textarea
               onChange={this.handleFieldChange}
               value={this.state.comment.message}
@@ -118,10 +118,13 @@ export default class CommentForm extends Component {
           </div>
 
           {this.renderError()}
-
+          {/* //submit */}
           <div className='form-group'>
-            <button disabled={this.state.loading} className='btn btn-primary'>
-              Comment &#10148;
+            <button
+              disabled={this.state.loading}
+              className='waves-effect waves-light btn'
+            >
+              Comment
             </button>
           </div>
         </form>

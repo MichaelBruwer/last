@@ -2,20 +2,21 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const UserItem = ({ user: { login, avatar_url, html_url } }) => {
+const UserItem = ({ user: { login, avatar_url } }) => {
   return (
-    <div className='card text-center'>
+    <div className='card circle pink lighten-4'>
       <img
         src={avatar_url}
         alt=''
-        className='round-img'
+        className='circle'
         style={{ width: '60px' }}
       />
-      <h3>{login}</h3>
-
+      {/* Dsplaying name */}
+      <h5>{login}</h5>
+      {/* Link to user profile */}
       <div>
-        <Link to={`/user/${login}`} className='btn btn-dark btn-sm my-1'>
-          more
+        <Link to={`/user/${login}`} className='waves-effect waves-light btn '>
+          Full Profile
         </Link>
       </div>
     </div>

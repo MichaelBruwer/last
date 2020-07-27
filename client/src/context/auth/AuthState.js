@@ -34,6 +34,7 @@ const AuthState = (props) => {
 
       dispatch({ type: USER_LOADED, payload: res.data });
     } catch (err) {
+      //if error
       dispatch({ type: AUTH_ERROR });
     }
   };
@@ -47,7 +48,7 @@ const AuthState = (props) => {
     };
     try {
       const res = await axios.post('/api/users', formData, config);
-
+      //if working
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -56,6 +57,7 @@ const AuthState = (props) => {
       loadUser();
     } catch (err) {
       dispatch({
+        //if not working
         type: REGISTER_FAIL,
         payload: err.response.data.msg,
       });
@@ -71,7 +73,7 @@ const AuthState = (props) => {
     };
     try {
       const res = await axios.post('/api/auth', formData, config);
-
+      //if working
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -80,6 +82,7 @@ const AuthState = (props) => {
       loadUser();
     } catch (err) {
       dispatch({
+        //if not working
         type: LOGIN_FAIL,
         payload: err.response.data.msg,
       });

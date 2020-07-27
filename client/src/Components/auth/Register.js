@@ -11,6 +11,7 @@ const Register = (props) => {
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
+    //validation
     if (isAuthenticated) {
       props.history.push('/');
     }
@@ -35,11 +36,13 @@ const Register = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    //validation
     if (name === '' || email === '' || password === '') {
       setAlert('Please Fill in the Required Fields');
     } else if (password !== password2) {
       setAlert('Password is Incorrect');
     } else {
+      //validation clears login
       register({
         name,
         email,
@@ -51,15 +54,19 @@ const Register = (props) => {
   return (
     <div className='form-container'>
       <h1>Account Register</h1>
+      {/* //form */}
       <form onSubmit={onSubmit}>
+        {/* //name */}
         <div className='form-group'>
           <label htmlFor='name'>Name</label>
           <input type='text' name='name' value={name} onChange={onChange} />
         </div>
+        {/* //email */}
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input type='email' name='email' value={email} onChange={onChange} />
         </div>
+        {/* //password */}
         <div className='form-group'>
           <label htmlFor='password'>Password</label>
           <input
@@ -70,6 +77,7 @@ const Register = (props) => {
             minLength='8'
           />
         </div>
+        {/* //password confirmation */}
         <div className='form-group'>
           <label htmlFor='password2'>Confirm Password</label>
           <input
@@ -80,7 +88,7 @@ const Register = (props) => {
             minLength='8'
           />
         </div>
-
+        {/* //submit register */}
         <input type='submit' value='Register' className='btn btn-block' />
       </form>
     </div>
