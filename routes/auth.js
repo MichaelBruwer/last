@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
-
 const User = require('../models/User');
 
 //@route        Get api/auth
@@ -30,8 +29,8 @@ router.post(
   '/',
   //validation
   [
-    check('email', 'Please include valid email').isEmail(),
-    check('password', 'Password required').exists(),
+    check('email', 'Please use valid email').isEmail(),
+    check('password', 'Cannot be Null or Empty').exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -48,7 +47,7 @@ router.post(
       if (!user) {
         return res.status(400).json({ msg: 'Wrong Details' });
       }
-      //users email
+      //users email match , password chk
       const isMatch = await bcrypt.compare(password, user.password);
       //not users password
       if (!isMatch) {
