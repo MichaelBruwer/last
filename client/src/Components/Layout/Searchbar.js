@@ -110,7 +110,7 @@ const Searchbar = () => {
             <input
               type='submit'
               value='Search'
-              className='btn waves-effect waves-light hide'
+              className='btn waves-effect waves-light'
             />
           </form>
         </li>
