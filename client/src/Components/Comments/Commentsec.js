@@ -21,7 +21,7 @@ class commentsec extends Component {
     this.setState({ loading: true });
 
     // get all the comments
-    fetch('http://localhost:5000')
+    fetch('http://localhost:7000')
       .then((res) => res.json())
       .then((res) => {
         this.setState({

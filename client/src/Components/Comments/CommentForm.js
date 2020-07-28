@@ -49,7 +49,7 @@ export default class CommentForm extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
-    fetch('http://localhost:5000', {
+    fetch('http://localhost:7000', {
       method: 'post',
       body: JSON.stringify(comment),
     })
