@@ -14,7 +14,7 @@ const CommentItem = ({ comment }) => {
   };
 
   return (
-    <div className='card '>
+    <div className='card comsec' style={{ color: 'white' }}>
       <h3 className='left-align'>{name}</h3>
       <ul>{message && <li>{message}</li>}</ul>
 

@@ -15,7 +15,7 @@ const Comments = () => {
   }, []);
 
   if (comments !== null && comments.length === 0 && !loading) {
-    return <h4>Please add a comment</h4>;
+    return <h4 style={{ color: 'white' }}>Please add a comment</h4>;
   }
 
   return (
