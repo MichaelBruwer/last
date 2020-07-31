@@ -7,12 +7,11 @@ const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 
-//@route        Get api/auth
-//@desc         Get logged in user
-//@access       Private
+//get api/auth
+//get logged user
+//priv
 router.get('/', auth, async (req, res) => {
   try {
-    //pass
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
@@ -22,14 +21,14 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-//@route        POST api/auth
-//@desc         Auth user & get token
-//@access       Public
+//post api/auth
+//auth user & token
+//pub
 router.post(
   '/',
   //validation
   [
-    check('email', 'Please use valid email').isEmail(),
+    check('email', 'use valid email').isEmail(),
     check('password', 'Cannot be Null or Empty').exists(),
   ],
   async (req, res) => {
@@ -71,7 +70,6 @@ router.post(
         }
       );
     } catch (err) {
-      //error
       console.error(err.message);
       res.status(500).send('Server Error');
     }

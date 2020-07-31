@@ -3,7 +3,9 @@ import React, { Fragment, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ApiContext from '../../context/Api/apiContext';
 
-import Commentsec from '../Comments/Commentsec';
+// //comments
+import Comments from '../Comments/Comment';
+import CommentForm from '../Comments/CommentForm';
 
 const User = ({ match }) => {
   const apiContext = useContext(ApiContext);
@@ -65,7 +67,15 @@ const User = ({ match }) => {
           </ul>
         </div>
       </div>
-      <Commentsec />
+      {/* //comment s */}
+      <div>
+        <CommentForm />
+      </div>
+      <div>
+        <Comments />
+      </div>
+
+      {/* //com stop */}
       {/* rateing */}
       {/* <div id='star'>
         <star />

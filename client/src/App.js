@@ -11,6 +11,7 @@ import Register from './Components/auth/Register';
 import Login from './Components/auth/Login';
 //Layout
 import Searchbar from './Components/Layout/Searchbar';
+// eslint-disable-next-line
 import Footer from './Components/Layout/Footer';
 //authentication
 import Alerts from './Components/Layout/Alerts';
@@ -21,6 +22,7 @@ import ApiState from './context/Api/ApiState';
 import User from './Components/users/User';
 //css
 import './App.css';
+import CommentState from './context/Comment/CommentState';
 
 const App = () => {
   useEffect(() => {
@@ -31,24 +33,26 @@ const App = () => {
   return (
     <ApiState>
       <AuthState>
-        <AlertState>
-          <Router>
-            <Fragment>
-              <Searchbar />
+        <CommentState>
+          <AlertState>
+            <Router>
+              <Fragment>
+                <Searchbar />
 
-              <div className='container'>
-                <Alerts />
-                <Switch>
-                  <Route exact path='/' component={Home} />
-                  <Route exact path='/register' component={Register} />
-                  <Route exact path='/login' component={Login} />
-                  <Route exact path='/user/:login' component={User} />
-                </Switch>
-              </div>
-              {/* <Footer /> */}
-            </Fragment>
-          </Router>
-        </AlertState>
+                <div className='container'>
+                  <Alerts />
+                  <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/register' component={Register} />
+                    <Route exact path='/login' component={Login} />
+                    <Route exact path='/user/:login' component={User} />
+                  </Switch>
+                </div>
+                {/* <Footer /> */}
+              </Fragment>
+            </Router>
+          </AlertState>
+        </CommentState>
       </AuthState>
     </ApiState>
   );

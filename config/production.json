@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://michael69:blackviking@react-rateing-app.sy7tc.mongodb.net/users?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://michael123:michael123@react-rateing-app.sy7tc.mongodb.net/userstest?retryWrites=true&w=majority",
   "jwtSecret": "secret"
 }

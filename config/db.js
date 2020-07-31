@@ -11,7 +11,7 @@ const connectDB = async () => {
       useFindAndModify: false,
     });
 
-    console.log('Mongo Working');
+    console.log('MCDB Con OK');
   } catch (err) {
     console.error(err.message);
     process.exit(1);

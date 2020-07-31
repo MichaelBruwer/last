@@ -1,132 +1,79 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import CommentContext from '../../context/Comment/commentContext';
 
-export default class CommentForm extends Component {
-  //constructor to set default state
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-      error: '',
+const CommentForm = () => {
+  const commentContext = useContext(CommentContext);
 
-      comment: {
+  const { addComment, updateComment, clearCurrent, current } = commentContext;
+
+  useEffect(() => {
+    if (current !== null) {
+      setComment(current);
+    } else {
+      setComment({
         name: '',
         message: '',
-      },
-    };
+      });
+    }
+  }, [commentContext, current]);
 
-    // bind context to methods
-    this.handleFieldChange = this.handleFieldChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  const [comment, setComment] = useState({
+    name: '',
+    message: '',
+  });
 
-  //Handle form input field changes & update the state
+  const { name, message } = comment;
 
-  handleFieldChange = (event) => {
-    const { value, name } = event.target;
+  const onChange = (e) =>
+    setComment({ ...comment, [e.target.name]: e.target.value });
 
-    this.setState({
-      ...this.state,
-      comment: {
-        ...this.state.comment,
-        [name]: value,
-      },
-    });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (current === null) {
+      addComment(comment);
+    } else {
+      updateComment(comment);
+    }
+    clearAll();
   };
 
-  //Form submit
+  const clearAll = () => {
+    clearCurrent();
+  };
 
-  onSubmit(e) {
-    // prevent default form submission
-    e.preventDefault();
+  return (
+    <form onSubmit={onSubmit} style={{ color: 'white' }} className='comsec'>
+      <h2>{current ? 'Edit Comment' : 'Add Comment'}</h2>
+      <input
+        type='text'
+        placeholder='Name'
+        name='name'
+        value={name}
+        onChange={onChange}
+      />
+      <input
+        type='text'
+        placeholder='comment'
+        name='message'
+        value={message}
+        onChange={onChange}
+      />
+      <div>
+        <input
+          type='submit'
+          value={current ? 'Update Comment' : 'Add Comment'}
+          className='waves-effect waves-light btn'
+        />
+      </div>
+      {current && (
+        <div>
+          <button className='waves-effect waves-light btn' onClick={clearAll}>
+            Clear
+          </button>
+        </div>
+      )}
+    </form>
+  );
+};
 
-    if (!this.isFormValid()) {
-      this.setState({ error: 'Cannot be null or empty' });
-      return;
-    }
-
-    // loading status and clear error
-    this.setState({ error: '', loading: true });
-
-    // persist the comments on server
-    let { comment } = this.state;
-    fetch('http://localhost:7000', {
-      method: 'post',
-      body: JSON.stringify(comment),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          this.setState({ loading: false, error: res.error });
-        } else {
-          // add time and push comment to state
-          comment.time = res.time;
-          this.props.addComment(comment);
-
-          // clear message box
-          this.setState({
-            loading: false,
-            comment: { ...comment, message: '' },
-          });
-        }
-      })
-      //if error
-      .catch((err) => {
-        this.setState({
-          error: 'Something went wrong.',
-          loading: false,
-        });
-      });
-  }
-
-  // validation
-
-  isFormValid() {
-    return this.state.comment.name !== '' && this.state.comment.message !== '';
-  }
-
-  renderError() {
-    return this.state.error ? (
-      <div className='alert'>{this.state.error}</div>
-    ) : null;
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <form method='post' onSubmit={this.onSubmit}>
-          <div className='form-group'>
-            {/* //name */}
-            <input
-              onChange={this.handleFieldChange}
-              value={this.state.comment.name}
-              placeholder=' Insert Name'
-              name='name'
-              type='text'
-            />
-          </div>
-          <div className='form-group'>
-            {/* //comment */}
-            <textarea
-              onChange={this.handleFieldChange}
-              value={this.state.comment.message}
-              placeholder=' Insert Comment'
-              name='message'
-              type='text'
-            />
-          </div>
-
-          {this.renderError()}
-          {/* //submit */}
-          <div>
-            <button
-              disabled={this.state.loading}
-              className='waves-effect waves-light btn'
-            >
-              Comment
-            </button>
-          </div>
-        </form>
-      </Fragment>
-    );
-  }
-}
+export default CommentForm;
