@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import CommentItem from './CommentItem';
-
+import Spinner from '../Layout/Spinner';
 import CommentContext from '../../context/Comment/commentContext';
 
 const Comments = () => {
@@ -27,7 +27,7 @@ const Comments = () => {
           </CSSTransition>
         ))
       ) : (
-        <loading />
+        <Spinner />
       )}
     </Fragment>
   );
