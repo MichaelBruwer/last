@@ -38,15 +38,15 @@ router.post(
     const { name, message } = req.body;
 
     try {
-      const newContact = new Contact({
+      const newComment = new Comment({
         name,
         message,
         user: req.user.id,
       });
 
-      const contact = await newContact.save();
+      const comment = await newComment.save();
 
-      res.json(contact);
+      res.json(comment);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -75,7 +75,7 @@ router.put('/:id', auth, async (req, res) => {
       { new: true }
     );
 
-    res.json(contact);
+    res.json(comment);
   } catch (err) {
     console.error(er.message);
     res.status(500).send('Server Error');
