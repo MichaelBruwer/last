@@ -76,6 +76,7 @@ const User = ({ match }) => {
       </div>
 
       {/* //com stop */}
+
       {/* rateing */}
       {/* <div id='star'>
         <star />
