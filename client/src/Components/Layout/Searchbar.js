@@ -39,6 +39,12 @@ const Searchbar = () => {
       <li>
         <Link to='/'>Home</Link>
       </li>
+      <li>
+        <Link to='/SR'>SearchResults</Link>
+      </li>
+      <li>
+        <Link to='/Profile'>Profile</Link>
+      </li>
       <li>Welcome {user && user.name}</li>
       <li>
         {/* //logsout */}
@@ -117,6 +123,12 @@ const Searchbar = () => {
         <li>
           <Link to='/'>Home</Link>
         </li>
+        <li>
+        <Link to='/SR'>SearchResults</Link>
+      </li>
+      <li>
+        <Link to='/Profile'>Profile</Link>
+      </li>
         <li>
           <Link to='/register'>Register</Link>
         </li>

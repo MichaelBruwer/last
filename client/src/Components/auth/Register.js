@@ -11,7 +11,7 @@ const Register = (props) => {
   useEffect(() => {
     //validation
     if (isAuthenticated) {
-      props.history.push('/');
+      props.history.push('/Profile');
     }
 
     if (error === 'User exists') {

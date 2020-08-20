@@ -5,40 +5,40 @@ function Footer() {
     <footer
       className='page-footer purple lighten-2'
       style={{
-        position: 'fixed',
+        position: 'Absolute',
         bottom: '0',
         left: '0',
         width: '100%',
+        height: '100px',
+        
       }}
     >
       <div className='container'>
         <div className='row'>
-          <div className='col l6 s12'>
-            <h5 className='white-text'>Michael Bruwer</h5>
-            <p className='grey-text text-lighten-4'>
-              Welcome to my Profile this was built useing React
-            </p>
+          <div className='col m3 s6'>
           </div>
           <div className='col l4 offset-l2 s12'>
-            <h5 className='white-text'>Links</h5>
-            <ul>
-              <li>
+           <div style={{display: 'flex', flexwrap: 'wrap' }}>
+            <h5 className='white-text' style={{margin: '10px'}}>Links:</h5>
+            <ul style={{display: 'flex', flexwrap: 'wrap' }}>
+              <li style={{margin: '10px'}}>
                 <a
                   className='grey-text text-lighten-3'
                   href='https://github.com/MichaelBruwer'
                 >
-                  Github
+                  <i class="fab fa-github fa-3x"></i>
                 </a>
               </li>
-              <li>
+              <li style={{margin: '10px'}}>
                 <a
                   className='grey-text text-lighten-3'
                   href='https://www.linkedin.com/in/michael-bruwer-2806a41a9/'
                 >
-                  LinkedIn
+                 <i class="fab fa-linkedin fa-3x"></i>
                 </a>
               </li>
             </ul>
+          </div>
           </div>
         </div>
       </div>

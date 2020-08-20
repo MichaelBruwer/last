@@ -22,6 +22,9 @@ const User = ({ match }) => {
 
   return (
     <Fragment>
+      <Link to='/SR' className='waves-effect waves-light btn-small'>
+        Back to Search
+      </Link>
       <div
         className='card  pfbg blue lighten-4  center'
         style={{ color: 'white' }}
@@ -69,11 +72,12 @@ const User = ({ match }) => {
       </div>
       {/* //comment s */}
       <div>
-        <CommentForm />
-      </div>
-      <div>
         <Comments />
       </div>
+      <div>
+        <CommentForm />
+      </div>
+      
 
       {/* //com stop */}
 
@@ -81,7 +85,7 @@ const User = ({ match }) => {
       {/* <div id='star'>
         <star />
       </div> */}
-      <Link to='/' className='waves-effect waves-light btn-small'>
+      <Link to='/SR' className='waves-effect waves-light btn-small'>
         Back to Search
       </Link>
     </Fragment>

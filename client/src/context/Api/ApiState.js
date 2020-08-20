@@ -36,7 +36,7 @@ const ApiState = (props) => {
     setLoading();
 
     const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}`
+      `https://cors-anywhere.herokuapp.com/api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}`,{headers: {'Access-Control-Allow-Origin': '*'}}
     );
 
     dispatch({
@@ -50,7 +50,7 @@ const ApiState = (props) => {
     setLoading();
 
     const res = await axios.get(
-      `https://api.github.com/users/${username}?client_id=${githubClientId}&client_secret=${githubClientSecret}`
+      `https://cors-anywhere.herokuapp.com/api.github.com/users/${username}?client_id=${githubClientId}&client_secret=${githubClientSecret}`,{headers: {'Access-Control-Allow-Origin': '*'}}
     );
 
     dispatch({
@@ -64,7 +64,7 @@ const ApiState = (props) => {
     setLoading();
 
     const res = await axios.get(
-      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecret}`
+      `https://cors-anywhere.herokuapp.com/api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecret}`,{headers: {'Access-Control-Allow-Origin': '*'}}
     );
 
     dispatch({

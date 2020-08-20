@@ -13,7 +13,7 @@ const Login = (props) => {
   useEffect(() => {
     //validation
     if (isAuthenticated) {
-      props.history.push('/');
+      props.history.push('/Profile');
     }
 
     if (error === 'Wrong Details') {
